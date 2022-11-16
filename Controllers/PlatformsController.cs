@@ -1,5 +1,4 @@
-﻿using Microsoft.AspNetCore.Http;
-using Microsoft.AspNetCore.Mvc;
+﻿using Microsoft.AspNetCore.Mvc;
 using RedisAPI.Data;
 using RedisAPI.Model;
 
@@ -35,6 +34,12 @@ namespace RedisAPI.Controllers
             _repo.CreatePlatform(platform);
 
             return CreatedAtRoute(nameof(GetPlatformById), new {Id = platform.Id }, platform);
+        }
+
+        [HttpGet]
+        public ActionResult<IEnumerable<Platform>> GetPlatforms()
+        {
+            return Ok(_repo.GetAllPlatforms());
         }
     }
 }
